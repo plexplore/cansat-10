@@ -4,8 +4,8 @@ import os.path
 import sys
 import argparse
 from sensors.dummy import DummySensor
-from sensors.acceleration_sensor import *
-from sensors.gyrosensor import *
+from sensors.acceleration_sensor import DebugAccelerationSensor
+from sensors.gyrosensor import DebugGyroSensor
 from services.sensor import SensorService
 import models.sensor as _sensor
 import globals as g
