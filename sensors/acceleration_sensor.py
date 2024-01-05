@@ -1,6 +1,6 @@
 import json
 import logging
-
+import time
 import serial
 
 from models.sensor import Sensor, SensorType, SensorData
@@ -14,6 +14,7 @@ class DebugAccelerationSensor(Sensor):
         super().__init__(self.sensor_type)
 
     def get_data(self) -> SensorData:
+        time.sleep(0.02)
         with serial.Serial(self.port, self.baudrate, timeout=1, stopbits=2) as ser:
             res = {}
             while True:

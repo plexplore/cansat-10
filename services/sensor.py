@@ -4,7 +4,7 @@ import time
 
 
 class SensorService(Thread):
-    def __init__(self, sensor: Sensor, data: list[SensorData], data_lock: Lock, ex_e: Event, rq_per_sec=10):
+    def __init__(self, sensor: Sensor, data: list[SensorData], data_lock: Lock, ex_e: Event, rq_per_sec=5):
         super(SensorService, self).__init__()
         self.sensor = sensor
         self.data = data

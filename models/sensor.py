@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 import datetime as dt
 from enum import Enum
 import uuid
-from db.models import BaseSensorData
+from db.db_models import BaseSensorData, CanSatSession
 
 
 class SensorType(Enum):
@@ -23,14 +23,14 @@ class SensorData:
         self.send = False
         self.saved = False
 
-    def to_base_sensor_data(self) -> BaseSensorData:
+    def to_base_sensor_data(self, session: CanSatSession) -> BaseSensorData:
         d = self.data
         while len(d) < 3:
             d.append(0.0)
         d1, d2, d3 = d
 
         return BaseSensorData(time=self.time, sensor_id=self.sensor_id, sensor_type=str(self.sensor_type),
-                              data_id=self.data_id, d1=d1, d2=d2, d3=d3)
+                              data_id=self.data_id, d1=d1, d2=d2, d3=d3, session=session)
 
     def __str__(self):
         return f"{self.data_id} - {self.sensor_id} - {self.sensor_type} - {self.time.isoformat()}: {self.data}"
