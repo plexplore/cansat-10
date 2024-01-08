@@ -32,11 +32,10 @@ class CanSat:
         self.db = CanSatDB()
 
     def prepare_data(self):
-        self.data_lock.acquire()
-        self.send_data.extend(self.data)
-        self.save_data.extend(self.data)
-        self.data.clear()
-        self.data_lock.release()
+        with self.data_lock:
+            self.send_data.extend(self.data)
+            self.save_data.extend(self.data)
+            self.data.clear()
 
     def exit_handler(self):
         if not self.exit_event.is_set():

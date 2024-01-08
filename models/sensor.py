@@ -7,10 +7,12 @@ from db.db_models import BaseSensorData, CanSatSession
 
 class SensorType(Enum):
     DUMMY = 1
-    TEMPERATURE = 2
+    TEMPERATURE_BMP180 = 2
     PRESSURE = 3
     GYRO = 4
     ACCELERATION = 5
+    ALTITUDE = 6
+    TEMPERATURE_MPU6050 = 7
 
 
 class SensorData:
@@ -55,8 +57,14 @@ def get_sensor_type(sensor_type: str) -> SensorType:
         return SensorType.GYRO
     elif sensor_type.lower() == "acceleration":
         return SensorType.ACCELERATION
-    elif sensor_type.lower() == "temperature":
-        return SensorType.TEMPERATURE
+    elif sensor_type.lower() == "temperature_bmp180":
+        return SensorType.TEMPERATURE_BMP180
+    elif sensor_type.lower() == "presssure":
+        return SensorType.PRESSURE
+    elif sensor_type.lower() == "altitude":
+        return SensorType.ALTITUDE
+    elif sensor_type.lower() == "temperature_mpu6050":
+        return SensorType.TEMPERATURE_MPU6050
 
     return SensorType.DUMMY
 
