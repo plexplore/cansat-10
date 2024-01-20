@@ -3,3 +3,4 @@ SQLAlchemy~=2.0.25
 PyYAML~=6.0.1
 circuitpython-bmp180
 adafruit-circuitpython-mpu6050
+gps~=3.19

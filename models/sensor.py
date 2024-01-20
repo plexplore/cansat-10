@@ -13,6 +13,7 @@ class SensorType(Enum):
     ACCELERATION = 5
     ALTITUDE = 6
     TEMPERATURE_MPU6050 = 7
+    GPS = 8
 
 
 class SensorData:
