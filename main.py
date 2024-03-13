@@ -111,6 +111,9 @@ class CanSat:
         GPIO.setup(12, GPIO.OUT)
         GPIO.setup(13, GPIO.OUT)
 
+        self.servo1 = GPIO.PWM(12, 50)
+        self.servo2 = GPIO.PWM(13, 50)
+
 
 
 
@@ -175,21 +178,20 @@ class CanSat:
         try:
             self.startup()
 
-            self.beep.startup_beep()
 
-            """self.servo1.start(0)
+            self.servo1.start(0)
             self.servo2.start(0)
     
             self.servo1.ChangeDutyCycle(9.3)
             self.servo2.ChangeDutyCycle(5.3)
     
-            time.sleep(10)
+            time.sleep(60)
     
             self.servo1.ChangeDutyCycle(7.3)
             self.servo2.ChangeDutyCycle(7.3)
     
             self.servo1.stop()
-            self.servo2.stop()"""
+            self.servo2.stop()
 
             self.logger.info("Ready - waiting for exit...")
             t = time.time()
