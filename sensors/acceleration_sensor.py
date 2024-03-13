@@ -22,7 +22,7 @@ class AccelerationSensor(Sensor):
 
     def get_data(self) -> SensorData:
         with self.i2c_lock:
-            res = self.mpu.acceleration
+            res = [self.mpu.acceleration]
         return SensorData(self.id, self.sensor_type, res)
 
 class DebugAccelerationSensor(Sensor):

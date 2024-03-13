@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from dataclasses_json import dataclass_json
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import DateTime, Integer, String, Float, Boolean, ForeignKey
 from datetime import datetime
@@ -10,6 +11,7 @@ class Base(DeclarativeBase):
 
 
 @dataclass
+@dataclass_json
 class CanSatSession(Base):
     __tablename__ = 'cansat_session'
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -19,6 +21,7 @@ class CanSatSession(Base):
 
 
 @dataclass
+@dataclass_json
 class BaseSensorData(Base):
     __tablename__ = 'base_sensor_data'
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -33,4 +36,5 @@ class BaseSensorData(Base):
     session_id: Mapped[int] = mapped_column(ForeignKey("cansat_session.id"))
     session: Mapped["CanSatSession"] = relationship(back_populates="sensor_data")
 
-
+if __name__ == '__main__':
+    print(BaseSensorData(id=1, time=datetime.now(), sensor_id=3, data_id="hisdf", sensor_type="sdfg").to_json())

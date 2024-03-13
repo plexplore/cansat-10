@@ -19,7 +19,7 @@ class GyroSensor(Sensor):
 
     def get_data(self) -> SensorData:
         with self.i2c_lock:
-            res = self.mpu.gyro
+            res = [self.mpu.gyro]
         return SensorData(self.id, self.sensor_type, res)
 
 
@@ -47,5 +47,5 @@ class DebugGyroSensor(Sensor):
 
 
 if __name__ == '__main__':
-    s = DebugGyroSensor(1, "COM5", 115200)
+    s = GyroSensor(1, Lock())
     print(s.get_data())
